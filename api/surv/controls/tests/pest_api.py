@@ -1,6 +1,5 @@
 import json
 import pytest
-import logging
 from unittest import TestCase
 from django.test import Client
 from django.urls import reverse
