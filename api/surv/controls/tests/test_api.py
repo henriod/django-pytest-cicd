@@ -1,7 +1,6 @@
 import json
-from unicodedata import name
-from urllib import response
 import pytest
+import logging
 from unittest import TestCase
 from django.test import Client
 from django.urls import reverse
@@ -68,4 +67,12 @@ class TestControlPost(BasicControlApiTestCase):
         self.assertEqual(response_content.get("ctype"),"Primary")
         self.assertEqual(response_content.get("notes"),"")
 
+    @pytest.mark.xfail
+    def test_should_be_ok_if_fails(self)->None:
+        pass
 
+    @pytest.mark.skip
+    def test_should_be_skipped(self)->None:
+        pass
+
+    
