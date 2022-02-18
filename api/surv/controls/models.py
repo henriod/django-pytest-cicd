@@ -9,7 +9,7 @@ class Control(models.Model):
         Tertiary = "Tertiary"
     name = models.CharField(max_length=30, unique=True)
     cid = models.CharField(max_length=10, unique=True)
-    ctype = models.CharField(choices=ControlTypes.choices, max_length=10)
+    ctype = models.CharField(choices=ControlTypes.choices, max_length=10,blank=True)
     last_update =models.DateTimeField(default=now, editable=True)
     notes = models.CharField(max_length=100, blank=True)
 

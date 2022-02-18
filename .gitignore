@@ -7,6 +7,7 @@
 node_modules/
 dist/
 django/
+api/surv/db.sqlite3
 
 # Compiled Java class files
 *.class
