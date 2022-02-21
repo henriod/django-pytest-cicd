@@ -21,7 +21,7 @@ pipelines:
               - pip
             script:
               - pip install -r requirements.txt
-              - pytest fibonacci/ -s -v --duration=0 --cov=.
+              - pytest fibonacci -s -v --duration=0 --cov=.
         - step:
             name: "Lint"
             script:
