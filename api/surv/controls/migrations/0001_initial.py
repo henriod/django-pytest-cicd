@@ -8,19 +8,39 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Control',
+            name="Control",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=30, unique=True)),
-                ('cid', models.CharField(max_length=10, unique=True)),
-                ('ctype', models.CharField(choices=[('Primary', 'Primary'), ('Secondary', 'Secondary'), ('Tertiary', 'Tertiary')], max_length=10)),
-                ('last_update', models.DateTimeField(default=django.utils.timezone.now)),
-                ('notes', models.CharField(blank=True, max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=30, unique=True)),
+                ("cid", models.CharField(max_length=10, unique=True)),
+                (
+                    "ctype",
+                    models.CharField(
+                        choices=[
+                            ("Primary", "Primary"),
+                            ("Secondary", "Secondary"),
+                            ("Tertiary", "Tertiary"),
+                        ],
+                        max_length=10,
+                    ),
+                ),
+                (
+                    "last_update",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
+                ("notes", models.CharField(blank=True, max_length=100)),
             ],
         ),
     ]

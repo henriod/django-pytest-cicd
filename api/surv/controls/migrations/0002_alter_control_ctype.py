@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('controls', '0001_initial'),
+        ("controls", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='control',
-            name='ctype',
-            field=models.CharField(blank=True, choices=[('Primary', 'Primary'), ('Secondary', 'Secondary'), ('Tertiary', 'Tertiary')], max_length=10),
+            model_name="control",
+            name="ctype",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("Primary", "Primary"),
+                    ("Secondary", "Secondary"),
+                    ("Tertiary", "Tertiary"),
+                ],
+                max_length=10,
+            ),
         ),
     ]

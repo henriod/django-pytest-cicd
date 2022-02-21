@@ -19,7 +19,7 @@ from controls.urls import control_router
 from controls.views import send_control_email
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("", include(control_router.urls)),
-    path("send-email", send_control_email)
+    path("send-email", send_control_email),
 ]
