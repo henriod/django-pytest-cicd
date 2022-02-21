@@ -13,12 +13,12 @@ pipelines:
             caches:
               - pip
             script:
-              - echo "Your build and test goes here..."
+              - pip install -r requirements.txt
+              - pytest api/surv -s -v --durations=0
         - step:
             name: "Lint"
             script:
-              - pip install -r requirements.txt
-              - pytest api/surv -s -v --durations=0
+              - echo "Your Linting scan goes here"
         - step:
             name: "Security scan"
             script:
