@@ -15,6 +15,12 @@ pipelines:
             script:
               - pip install -r requirements.txt
               - pytest api/surv -s -v --durations=0 --cov=.
+        - step:
+            name: "Fibonacci"
+            caches:
+              - pip
+            script:
+              - pip install -r requirements.txt
               - pytest fibonacci/ -s -v --duration=0 --cov=.
         - step:
             name: "Lint"
