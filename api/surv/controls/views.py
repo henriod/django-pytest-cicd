@@ -6,8 +6,8 @@ from rest_framework.request import Request
 from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
 
-from .serializers import ControlSerializer
-from .models import Control
+from controls.serializers import ControlSerializer
+from controls.models import Control
 
 # Create your views here.
 class ControlViewset(viewsets.ModelViewSet):

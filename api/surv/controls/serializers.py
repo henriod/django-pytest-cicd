@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Control
+from controls.models import Control
 
 
 class ControlSerializer(serializers.ModelSerializer):
