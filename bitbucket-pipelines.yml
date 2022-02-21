@@ -14,6 +14,8 @@ pipelines:
               - pip
             script:
               - pip install -r requirements.txt
+              - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/surv
+              - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/surv
               - pytest -s -v --durations=0
         - step:
             name: "Lint"
