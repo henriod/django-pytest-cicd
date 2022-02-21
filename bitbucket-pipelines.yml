@@ -3,33 +3,36 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 
-image: atlassian/default-image:3
+image: python:3.9.7
 
 pipelines:
   default:
     - parallel:
-      - step:
-          name: 'Build and Test'
-          script:
-            - echo "Your build and test goes here..."
-      - step:
-          name: 'Lint'
-          script:
-            - echo "Your linting goes here..."
-      - step:
-          name: 'Security scan'
-          script:
-            - echo "Your security scan goes here..."
+        - step:
+            name: "Django Controls API test"
+            caches:
+              - pip
+            script:
+              - echo "Your build and test goes here..."
+        - step:
+            name: "Lint"
+            script:
+              - pip install -r requirements.txt
+              - pytest api/surv -s -v --duration=0
+        - step:
+            name: "Security scan"
+            script:
+              - echo "Your security scan goes here..."
 
     # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
     - step:
-        name: 'Deployment to Staging'
+        name: "Deployment to Staging"
         deployment: staging
         script:
           - echo "Your deployment to staging script goes here..."
     - step:
-        name: 'Deployment to Production'
+        name: "Deployment to Production"
         deployment: production
-        trigger: 'manual'
+        trigger: "manual"
         script:
           - echo "Your deployment to production script goes here..."
