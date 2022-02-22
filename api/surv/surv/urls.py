@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from controls.urls import control_router
-from controls.views import send_control_email
+from controls.views import send_control_email, nth_fibonaccii_number
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(control_router.urls)),
     path("send-email", send_control_email),
+    path("fibonacci",nth_fibonaccii_number),
 ]

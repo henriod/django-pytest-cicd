@@ -32,3 +32,23 @@ def send_control_email(request: Request) -> Response:
     return Response(
         {"status": "success", "info": "email sent successfully"}, status=200
     )
+def fibonacci_naive(n: int) -> int:
+    if n == 0 or n == 1:
+        return n
+    return fibonacci_naive(n - 2) + fibonacci_naive(n - 1)
+
+@api_view(http_method_names=["POST"])
+def nth_fibonaccii_number(request:Request)-> Response:
+    n = request.data.get("fibonacci")
+    print(n)
+    if n < 0 or isinstance(n, float):
+        return Response(
+            {"status":"failed", "infor":f"n'th:{n} must be positive and not float"},
+            status=406
+        )
+    
+    else:
+        result = fibonacci_naive(n)
+        return Response(
+            {"status":"success", "infor":f"the n'th fibonacci number is :{result} "}
+        )
