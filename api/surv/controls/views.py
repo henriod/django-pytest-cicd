@@ -33,6 +33,7 @@ def send_control_email(request: Request) -> Response:
         {"status": "success", "info": "email sent successfully"}, status=200
     )
 
+
 def fibonacii_dynamic_v2(n: int) -> int:
     fib_1, fib_2 = 0, 1
 
@@ -42,23 +43,26 @@ def fibonacii_dynamic_v2(n: int) -> int:
 
     return fib_1
 
+
 def RepresentsInt(s):
-    try: 
+    try:
         int(s)
         return True
     except ValueError:
         return False
+
+
 @api_view(http_method_names=["POST"])
-def nth_fibonaccii_number(request:Request)-> Response:
-    n = request.data.get("fibonacci")    
-    if n == None or RepresentsInt(n)== False or int(n) < 0 :
+def nth_fibonaccii_number(request: Request) -> Response:
+    n = request.data.get("fibonacci")
+    if n == None or RepresentsInt(n) == False or int(n) < 0:
         return Response(
-            {"status":"failed", "infor":"n must be positive interger number"},
-            status=406
+            {"status": "failed", "infor": "n must be positive interger number"},
+            status=406,
         )
-    
+
     else:
         result = fibonacii_dynamic_v2(int(n))
         return Response(
-            {"status":"success", "infor":f"the {n}th fibonacci number is :{result} "}
+            {"status": "success", "infor": f"the {n}th fibonacci number is :{result} "}
         )

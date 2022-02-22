@@ -7,15 +7,19 @@ from controls.models import Control
 controls_url = reverse("controls-list")
 pytestmark = pytest.mark.django_db
 
-
+# --------------------------Test Control Get and List ------------------------------------------------
 def test_zero_controls_should_return_empty_list(client) -> None:
     response = client.get(controls_url)
     assert response.status_code == 200
     assert json.loads(response.content) == []
 
 
-def test_one_control_exist_should_succeed(client) -> None:
-    muhoroni1 = Control.objects.create(name="muhoroni1", cid="fredst", ctype="Primary")
+@pytest.fixture
+def muhoroni1() -> Control:
+    return Control.objects.create(name="muhoroni1", cid="fredst", ctype="Primary")
+
+
+def test_one_control_exist_should_succeed(client, muhoroni1) -> None:
     response = client.get(controls_url)
     response_content = json.loads(response.content)[0]
     assert response.status_code == 200
@@ -79,3 +83,32 @@ def test_should_be_ok_if_fails() -> None:
 @pytest.mark.skip
 def test_should_be_skipped() -> None:
     pass
+
+
+# -----------------------------Learn About Fixtures-----------------------------------------
+
+
+@pytest.fixture
+def controls(**kwargs):
+    def _control_factory(**kwargs) -> Control:
+        control_name = kwargs.pop("name", "muhoroni1")
+        control_cid = kwargs.pop("cid", "mhn1")
+        control_ctype = kwargs.pop("ctype", "Secondary")
+        return Control.objects.create(
+            name=control_name, cid=control_cid, ctype=control_ctype, **kwargs
+        )
+
+    return _control_factory
+
+
+def test_mutliple_controls_exist_should_succed(client, controls) -> None:
+    muhoroni1 = controls()
+    kisumu1 = controls(name="kisumu1", cid="ksm1", ctype="Secondary")
+    mlolongo1 = controls(name="mlolongo1", cid="mlg1", ctype="Secondary")
+    control_names = {muhoroni1.name, kisumu1.name, mlolongo1.name}
+    response_controls = client.get(controls_url).json()
+    assert len(control_names) == len(response_controls)
+    response_control_names = set(
+        map(lambda control: control.get("name"), response_controls)
+    )
+    assert control_names == response_control_names

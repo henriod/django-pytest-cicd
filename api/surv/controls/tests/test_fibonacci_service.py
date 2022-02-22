@@ -28,8 +28,9 @@ def test_get_the_nth_fibonacci_number_with_no_arguments_fails(client) -> None:
         "infor": "n must be positive interger number",
     }
 
+
 def test_get_the_nth_fibonacci_number_with_string_as_arguments_fails(client) -> None:
-    response = client.post(path="/fibonacci", data={"fibonacci":"hello"})
+    response = client.post(path="/fibonacci", data={"fibonacci": "hello"})
     assert response.status_code == 406
     assert json.loads(response.content) == {
         "status": "failed",
