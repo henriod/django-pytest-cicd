@@ -22,5 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(control_router.urls)),
     path("send-email", send_control_email),
-    path("fibonacci",nth_fibonaccii_number),
+    path("fibonacci", nth_fibonaccii_number),
 ]
