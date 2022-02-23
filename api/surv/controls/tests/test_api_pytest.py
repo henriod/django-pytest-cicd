@@ -102,9 +102,9 @@ def controls(**kwargs):
 
 
 def test_mutliple_controls_exist_should_succed(client, controls) -> None:
-    muhoroni1 = controls()
-    kisumu1 = controls(name="kisumu1", cid="ksm1", ctype="Secondary")
-    mlolongo1 = controls(name="mlolongo1", cid="mlg1", ctype="Secondary")
+    muhoroni1: Control = controls()
+    kisumu1: Control = controls(name="kisumu1", cid="ksm1", ctype="Secondary")
+    mlolongo1: Control = controls(name="mlolongo1", cid="mlg1", ctype="Secondary")
     control_names = {muhoroni1.name, kisumu1.name, mlolongo1.name}
     response_controls = client.get(controls_url).json()
     assert len(control_names) == len(response_controls)
