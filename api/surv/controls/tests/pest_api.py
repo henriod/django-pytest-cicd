@@ -4,7 +4,7 @@ from unittest import TestCase
 from django.test import Client
 from django.urls import reverse
 
-from controls.models import Control
+from api.surv.controls.models import Control
 
 
 @pytest.mark.django_db

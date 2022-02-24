@@ -14,9 +14,9 @@ def test_zero_controls_should_return_empty_list(client) -> None:
     assert json.loads(response.content) == []
 
 
-@pytest.fixture
-def muhoroni1() -> Control:
-    return Control.objects.create(name="muhoroni1", cid="fredst", ctype="Primary")
+# @pytest.fixture
+# def muhoroni1() -> Control:
+#     return Control.objects.create(name="muhoroni1", cid="fredst", ctype="Primary")
 
 
 def test_one_control_exist_should_succeed(client, muhoroni1) -> None:
@@ -88,17 +88,17 @@ def test_should_be_skipped() -> None:
 # -----------------------------Learn About Fixtures-----------------------------------------
 
 
-@pytest.fixture
-def controls(**kwargs):
-    def _control_factory(**kwargs) -> Control:
-        control_name = kwargs.pop("name", "muhoroni1")
-        control_cid = kwargs.pop("cid", "mhn1")
-        control_ctype = kwargs.pop("ctype", "Secondary")
-        return Control.objects.create(
-            name=control_name, cid=control_cid, ctype=control_ctype, **kwargs
-        )
+# @pytest.fixture
+# def controls(**kwargs):
+#     def _control_factory(**kwargs) -> Control:
+#         control_name = kwargs.pop("name", "muhoroni1")
+#         control_cid = kwargs.pop("cid", "mhn1")
+#         control_ctype = kwargs.pop("ctype", "Secondary")
+#         return Control.objects.create(
+#             name=control_name, cid=control_cid, ctype=control_ctype, **kwargs
+#         )
 
-    return _control_factory
+#     return _control_factory
 
 
 def test_mutliple_controls_exist_should_succed(client, controls) -> None:
