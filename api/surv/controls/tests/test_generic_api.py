@@ -32,7 +32,7 @@ def cleanup_control(control_id: str) -> None:
 
 
 # -------------Morking test with responses library--------------------------------------------------------------------------
-@pytest.mark.crypto
+@pytest.mark.skip_in_ci
 def test_dogecoin_api() -> None:
     response = requests.get(
         url="https://api.cryptonator.com/api/ticker/doge-usd",
@@ -48,7 +48,7 @@ def test_dogecoin_api() -> None:
 import responses
 
 
-@pytest.mark.crypto
+@pytest.mark.skip_in_ci
 @responses.activate
 def test_mocked_dogecoin_api() -> None:
     responses.add(
