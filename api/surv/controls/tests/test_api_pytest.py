@@ -14,7 +14,6 @@ def test_zero_controls_should_return_empty_list(client) -> None:
     assert json.loads(response.content) == []
 
 
-
 def test_one_control_exist_should_succeed(client, muhoroni1) -> None:
     response = client.get(controls_url)
     response_content = json.loads(response.content)[0]
