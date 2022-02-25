@@ -14,7 +14,7 @@ pipelines:
               - pip
             script:
               - pip install -r requirements.txt
-              - pytest api/surv -s -v --durations=0 --cov=.
+              - pytest api/surv -s -v --durations=0 --cov=. -m "not skip_in_ci"
         - step:
             name: "Fibonacci"
             caches:
