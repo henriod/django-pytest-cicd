@@ -32,48 +32,48 @@ def cleanup_control(control_id: str) -> None:
 
 
 # -------------Morking test with responses library--------------------------------------------------------------------------
-@pytest.mark.skip_in_ci
-def test_dogecoin_api() -> None:
-    response = requests.get(
-        url="https://api.cryptonator.com/api/ticker/doge-usd",
-        headers={"User-Agent": "Mozilla/5.0"},
-    )
+# @pytest.mark.skip_in_ci
+# def test_dogecoin_api() -> None:
+#     response = requests.get(
+#         url="https://api.cryptonator.com/api/ticker/doge-usd",
+#         headers={"User-Agent": "Mozilla/5.0"},
+#     )
 
-    assert response.status_code == 200
-    response_content = json.loads(response.content)
-    assert response_content["ticker"]["base"] == "DOGE"
-    assert response_content["ticker"]["target"] == "USD"
-
-
-import responses
+#     assert response.status_code == 200
+#     response_content = json.loads(response.content)
+#     assert response_content["ticker"]["base"] == "DOGE"
+#     assert response_content["ticker"]["target"] == "USD"
 
 
-@pytest.mark.skip_in_ci
-@responses.activate
-def test_mocked_dogecoin_api() -> None:
-    responses.add(
-        method=responses.GET,
-        url="https://api.cryptonator.com/api/ticker/doge-usd",
-        json={
-            "ticker": {
-                "base": "EDEN",
-                "target": "EDEN-USD",
-                "price": "0.04535907",
-                "volume": "4975940509.75870037",
-                "change": "-0.00052372",
-            },
-            "timestamp": 1612515303,
-            "success": True,
-            "error": "",
-        },
-        status=200,
-    )
-    response = requests.get(
-        url="https://api.cryptonator.com/api/ticker/doge-usd",
-        headers={"User-Agent": "Mozilla/5.0"},
-    )
+# import responses
 
-    assert response.status_code == 200
-    response_content = json.loads(response.content)
-    assert response_content["ticker"]["base"] == "EDEN"
-    assert response_content["ticker"]["target"] == "EDEN-USD"
+
+# @pytest.mark.skip_in_ci
+# @responses.activate
+# def test_mocked_dogecoin_api() -> None:
+#     responses.add(
+#         method=responses.GET,
+#         url="https://api.cryptonator.com/api/ticker/doge-usd",
+#         json={
+#             "ticker": {
+#                 "base": "EDEN",
+#                 "target": "EDEN-USD",
+#                 "price": "0.04535907",
+#                 "volume": "4975940509.75870037",
+#                 "change": "-0.00052372",
+#             },
+#             "timestamp": 1612515303,
+#             "success": True,
+#             "error": "",
+#         },
+#         status=200,
+#     )
+#     response = requests.get(
+#         url="https://api.cryptonator.com/api/ticker/doge-usd",
+#         headers={"User-Agent": "Mozilla/5.0"},
+#     )
+
+#     assert response.status_code == 200
+#     response_content = json.loads(response.content)
+#     assert response_content["ticker"]["base"] == "EDEN"
+#     assert response_content["ticker"]["target"] == "EDEN-USD"

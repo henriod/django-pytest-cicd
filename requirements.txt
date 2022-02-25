@@ -1,3 +1,5 @@
+allure-pytest==2.9.45
+allure-python-commons==2.9.45
 asgiref==3.5.0
 attrs==21.4.0
 black==22.1.0
@@ -23,11 +25,14 @@ pytest==7.0.1
 pytest-cov==3.0.0
 pytest-django==4.5.2
 pytest-forked==1.4.0
+pytest-sugar==0.9.4
 pytest-xdist==2.5.0
 pytz==2021.3
 requests==2.27.1
 responses==0.18.0
+six==1.16.0
 sqlparse==0.4.2
+termcolor==1.1.0
 tomli==2.0.1
 typing_extensions==4.1.1
 urllib3==1.26.8
