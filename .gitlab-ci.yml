@@ -2,6 +2,7 @@ image: python:3.9.7
 
 stages:
   - build
+  - test build
   - test api
   - test fibonacci
 
@@ -9,15 +10,29 @@ buil api:
   stage: build
   script:
     - pip install -r requirements.txt
-    - python -m pytest api/surv -s -v --durations=0 --cov=. -m "not skip_in_ci"
+    - python api/surv/manage.py runserver &
   artifacts:
     untracked: false
     expire_in: 30 days
     paths:
       - ./api
 
+test build:
+  stage: test build
+  script:
+    - pip install -r requirements.txt
+    - python api/surv/manage.py runserver &
+    - sleep 5
+    - curl "http://localhost:8000" | tac | tac | grep -q "controls"
+
+test api:
+  stage: test api
+  script:
+    - pip install -r requirements.txt
+    - python -m pytest api/surv -s -v --durations=0 --cov=. -m "not skip_in_ci"
+
 test fibonaci:
-  stage: build
+  stage: test fibonacci
   script:
     - pip install -r requirements.txt
     - python -m pytest fibonacci -s -v --durations=0 --cov=.
