@@ -2,9 +2,7 @@ image: python:3.9.7
 
 stages:
   - build
-  - test build
-  - test api
-  - test fibonacci
+  - test
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
@@ -32,7 +30,7 @@ buil api:
       - ./api
 
 test build:
-  stage: test build
+  stage: test
   script:
     - pip install -r requirements.txt
     - python api/surv/manage.py runserver &
@@ -40,7 +38,7 @@ test build:
     - curl "http://localhost:8000" | tac | tac | grep -q "controls"
 
 test api:
-  stage: test api
+  stage: test
   script:
     - pip install -r requirements.txt
     - python -m pytest api/surv -s -v --durations=0 --cov=. -m "not skip_in_ci" --junitxml=report.xml
@@ -50,7 +48,7 @@ test api:
       junit: report.xml
 
 test fibonaci:
-  stage: test fibonacci
+  stage: test
   script:
     - pip install -r requirements.txt
     - python -m pytest fibonacci -s -v --durations=0 --cov=. --junitxml=report.xml
