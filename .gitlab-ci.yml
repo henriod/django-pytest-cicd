@@ -1,0 +1,17 @@
+image: python:3.9.7
+
+stages:
+  - build
+  - test api
+  - test fibonacci
+
+buil api:
+  stage: build
+  script:
+    - pip install -r requirements.txt
+    - pytest api/surv -s -v --durations=0 --cov=. -m "not skip_in_ci"
+  artifacts:
+    untracked: false
+    expire_in: 30 days
+    paths:
+      - ./api

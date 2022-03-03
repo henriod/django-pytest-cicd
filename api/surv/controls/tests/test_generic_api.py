@@ -31,7 +31,7 @@ def cleanup_control(control_id: str) -> None:
     assert response.status_code == 204
 
 
-# -------------Morking test with responses library--------------------------------------------------------------------------
+# -------------Morking requests with responses library--------------------------------------------------------------------------
 # @pytest.mark.skip_in_ci
 # def test_dogecoin_api() -> None:
 #     response = requests.get(
