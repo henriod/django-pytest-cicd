@@ -43,10 +43,18 @@ test api:
   stage: test api
   script:
     - pip install -r requirements.txt
-    - python -m pytest api/surv -s -v --durations=0 --cov=. -m "not skip_in_ci"
+    - python -m pytest api/surv -s -v --durations=0 --cov=. -m "not skip_in_ci" --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
 
 test fibonaci:
   stage: test fibonacci
   script:
     - pip install -r requirements.txt
-    - python -m pytest fibonacci -s -v --durations=0 --cov=.
+    - python -m pytest fibonacci -s -v --durations=0 --cov=. --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
