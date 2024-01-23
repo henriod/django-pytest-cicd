@@ -9,3 +9,4 @@ pytest-django
 pytest-forked
 pytest-sugar
 pytest-xdist
+requests
